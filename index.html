@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet"> 
+    <title>Fancy weather</title>
+</head>
+<body>
+    <div id="content">
+        <div id="top-bar">
+            <div id="settings">
+                <div id="refresh">
+                    <img src="resources/Refresh_icon.png">
+                </div>
+                <div id="language-choice"></div>
+                <div id="temperature-choice">
+                    <div id="forenheit"></div>
+                    <div id="celcius" class="temperature-active"></div>
+                </div>
+            </div>
+            <div id="search">
+                <div id="search-bar">
+                    <input type="text" name="search" id="search" />
+                    <div id="voice-img">
+                        <img src="resources/mic.png" />
+                    </div>
+                </div>
+                <div id="search-button">
+                    <h4>
+                        Search
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <div id="weather">
+                <div id="weather-header">
+                    <h1 id="country-city">MINSK, BELARUS</h1>
+                    <h2 id="date-time">Mon 28 October 17:23:12</h2>
+                </div>
+                <div id="today-weather-forecast">
+                    <div id="today-temperature">
+                        <span class="">10</span>
+                        <span id="big-circle">°</span>
+                    </div>
+                    <div id="main-weather-image">
+                        <img src="" />
+                    </div>
+                    <div id="weather-info">
+                        <p id="description">OVERCAST</p>
+                        <p id="feels-like">FEELS LIKE : 7</p>
+                        <p id="wind">WIND: 2 m/s</p>
+                        <p id="humidity">HUMIDITY: 83%</p>
+                    </div>
+                </div>
+                <div id="future-forecasts">
+                    <div class="small-forecast">
+                        <p class="week-day">TUESDAY</p>
+                        <p class="future-temperature">7°</p>
+                    </div>
+                    <div class="small-forecast">
+                        <p class="week-day">WEDNSEDAY</p>
+                        <p class="future-temperature">7°</p>
+                    </div>
+                    <div class="small-forecast">
+                        <p class="week-day">THURSDAY</p>
+                        <p class="future-temperature">7°</p>
+                    </div>
+                </div>
+            </div>
+            <div id="map-nav">
+                <div id="map">
+                    <img id="map-image" src="resources/google.png">
+                </div>
+                <div id="coordinates">
+                    <div id="latitutude">Latitude: <span id="latitude-value">53°54'</span></div>
+                    <div id="Longitude">Longitude: <span id="longitude-value">27°34'</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

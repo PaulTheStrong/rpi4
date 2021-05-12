@@ -1,0 +1,202 @@
+@import "reset.css";
+
+body {
+    background-image: url('../resources/02.jpg');
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+}
+
+#top-bar {
+    display: flex;
+    width: 90%;
+    margin: 40px auto 0;
+    height: 44px;
+    justify-content: space-between;
+
+}
+
+#settings {
+    display: flex;
+}
+
+#refresh {
+    width: 44px;
+    height: 44px;
+    background-color: rgba(107, 107, 107, 0.5);
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+#refresh-img {
+    width: inherit;
+    opacity: 100%;
+}
+
+#language-choice{
+    background-color: rgba(107, 107, 107, 0.5);
+    width: 71px;
+    height: 44px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+#temperature-choice {
+    background-color: rgba(107, 107, 107, 0.5);
+    width: 88px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+}
+
+#temperature-choice div {
+    width:44px;
+    height: 44px;
+    border-radius: 10px;
+}
+
+.temperature-active {
+    background-color: rgba(107, 107, 107, 0.8);
+}
+
+#search {
+    width: 375px;
+    height: 44px;
+    display: flex;
+    border-radius: 10px;
+}
+
+#search-bar {
+    width: 274px;
+    height: inherit;
+    background-color: rgba(107, 107, 107, 0.5);
+    border: 2px solid rgb(194, 194, 194);   
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-bar input {
+    background: transparent;
+    border: none;
+    padding-left: 10px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    width: 85%;
+}
+
+#voice-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+
+#search-bar img {
+    height: 20px;
+} 
+
+#search-button {
+    width: 101px;
+    height: inherit;
+    background-color: rgba(174, 181, 185, 0.5);
+    color: white;
+    text-align: center;
+    display: flex;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#main {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 57px;
+}
+
+#weather-header {
+    color: white;
+}
+
+#today-weather-forecast {
+    display: flex;
+}
+
+#weather {
+    color: white;
+}
+
+#today-temperature {
+    position: relative;
+}
+
+#today-temperature span:first-child{
+    font-size: 306px;
+    line-height: 373px;
+}
+
+#big-circle {
+    font-size: 100px;
+    line-height: 373px;
+    position:absolute;
+    top: -65px;
+    right: -40px;
+}
+
+#weather-info {
+    font-size: 20px;
+    padding-top: 200px;
+    margin-left: 50px;
+}
+
+.week-day {
+    font-size: 22px;
+}
+
+#future-forecasts {
+    display: flex;
+}
+
+.small-forecast {
+    width: 160px;
+}
+
+.small-forecast:not(:last-child) {
+    margin-right: 51px;
+}
+
+.future-temperature {
+    font-size: 80px;
+    line-height: 1;
+}
+
+#map-nav {
+    width: 375px;
+    padding-top: 100px;
+}
+
+#map-image {
+    width: 375px;
+    border-radius: 35px;
+}
+
+#coordinates {
+    text-align: right;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 20px;
+}
