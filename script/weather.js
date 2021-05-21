@@ -4,45 +4,63 @@ const weatherApiKey = '904d9115373ba6faa8fdaf1c4e85c05d';
 
 export async function setWeather() {
     let data = await getWeatherJSON(appConfig.city);
-    let currentWeather = data.list[0];
-    setMainWeather(
-        currentWeather.weather[0].description, 
-        Math.round(currentWeather.main.temp), 
-        Math.round(currentWeather.main.feels_like),
-        currentWeather.wind.speed,
-        currentWeather.main.humidity,
-        currentWeather.weather[0].icon);
-    let smallWeatherArray = document.getElementsByClassName("small-forecast");
-    setSmallWeather(smallWeatherArray[0], data.list[8]);
-    setSmallWeather(smallWeatherArray[1], data.list[16]);
-    setSmallWeather(smallWeatherArray[2], data.list[24]);
-    setCity(data.city.name, data.city.country);
-    setTime();
-    appConfig.coordinates = [data.city.coord.lat, data.city.coord.lon];
+    if (data.cod == 200) {
+        let currentWeather = data.list[0];
+        setMainWeather(
+            currentWeather.weather[0].description, 
+            Math.round(currentWeather.main.temp), 
+            Math.round(currentWeather.main.feels_like),
+            currentWeather.wind.speed,
+            currentWeather.main.humidity,
+            currentWeather.weather[0].icon);
+        let smallWeatherArray = document.getElementsByClassName("small-forecast");
+        setSmallWeather(smallWeatherArray[0], data.list[8]);
+        setSmallWeather(smallWeatherArray[1], data.list[16]);
+        setSmallWeather(smallWeatherArray[2], data.list[24]);
+        setCity(data.city.name, data.city.country);
+
+        appConfig._timezoneOffset = data.city.timezone;
+        setTime();
+        appConfig.coordinates = [data.city.coord.lat, data.city.coord.lon];
+    } else {
+        alert("Cannot find city!");
+        console.log(data);
+    }
 }
 
 export async function setByCoordinates(coordinates) {
     let data = await getWeatherJSON(undefined, coordinates);
-    let currentWeather = data.list[0];
-    setMainWeather(
-        currentWeather.weather[0].description, 
-        Math.round(currentWeather.main.temp), 
-        Math.round(currentWeather.main.feels_like),
-        currentWeather.wind.speed,
-        currentWeather.main.humidity,
-        currentWeather.weather[0].icon);
-    let smallWeatherArray = document.getElementsByClassName("small-forecast");
-    setSmallWeather(smallWeatherArray[0], data.list[8]);
-    setSmallWeather(smallWeatherArray[1], data.list[16]);
-    setSmallWeather(smallWeatherArray[2], data.list[24]);
-    setCity(data.city.name, data.city.country);
-    setTime();
-    appConfig._coordinates = [data.city.coord.lat, data.city.coord.lon];
-    
+    if (data.cod == 200) {
+        let currentWeather = data.list[0];
+        setMainWeather(
+            currentWeather.weather[0].description, 
+            Math.round(currentWeather.main.temp), 
+            Math.round(currentWeather.main.feels_like),
+            currentWeather.wind.speed,
+            currentWeather.main.humidity,
+            currentWeather.weather[0].icon);
+        let smallWeatherArray = document.getElementsByClassName("small-forecast");
+        setSmallWeather(smallWeatherArray[0], data.list[8]);
+        setSmallWeather(smallWeatherArray[1], data.list[16]);
+        setSmallWeather(smallWeatherArray[2], data.list[24]);
+        setCity(data.city.name, data.city.country);
+        appConfig._timezoneOffset = data.city.timezone;
+        if (appConfig.scale == "farenheit") {
+            appConfig.scale = "farenheit";
+        }
+        setTime();
+        appConfig._coordinates = [data.city.coord.lat, data.city.coord.lon];
+    } else {
+        alert("Cannot find city!");
+        console.log(data);
+    }
 }
 
 function setTime() {
-    let date = new Date();
+    let nowTimestamp = Date.now();
+    let currentOffset = new Date().getTimezoneOffset() * 60 * 1000;
+    let newOffset = appConfig._timezoneOffset * 1000;
+    let date = new Date( nowTimestamp + currentOffset + newOffset);
 
     let options = {weekday : 'long', month: 'long', day: 'numeric', hour: "2-digit", minute: "2-digit", second: "2-digit"};
     const dateTimeElement = document.getElementById("date-time");
@@ -66,6 +84,7 @@ async function getWeatherJSON(city, coords)
 function setCity(city, region) {
     const countryCityElement = document.getElementById("country-city");
     appConfig._city = city;
+    localStorage.setItem("city", city);
     let regionFull = new Intl.DisplayNames([appConfig.locale], {type: 'region'}).of(region);
     countryCityElement.innerHTML = `${city}, ${regionFull}`;
 }

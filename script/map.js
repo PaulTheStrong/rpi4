@@ -3,17 +3,19 @@ import {setByCoordinates} from "./weather.js";
 
 var myMap;
 export function updateMap(coords) {
-    setLongitudeAndLatitude(coords);
-    myMap.setCenter(coords, 7, {duration : 500}); 
-    let myGeoObject = new ymaps.GeoObject({
-        // Описание геометрии.
-        geometry: {
-            type: "Point",
-            coordinates: coords
-        }
-    });
-    myMap.geoObjects.removeAll();
-    myMap.geoObjects.add(myGeoObject);
+    if (myMap != undefined) {
+        setLongitudeAndLatitude(coords);
+        myMap.setCenter(coords, myMap.getZoom(), {duration : 500}); 
+        let myGeoObject = new ymaps.GeoObject({
+            // Описание геометрии.
+            geometry: {
+                type: "Point",
+                coordinates: coords
+            }
+        });
+        myMap.geoObjects.removeAll();
+        myMap.geoObjects.add(myGeoObject);
+    }
 }
 //yandex map api key: 1e754afd-3073-488f-bc7c-0fdc6e1cf099
 ymaps.ready(init);
@@ -45,7 +47,7 @@ function convertCoordinates(coord) {
 
 function init() {
     myMap = new ymaps.Map("map", {
-        center: [53.893009,27.567444],
+        center: appConfig.coordinates,
         zoom: 7
     });
 

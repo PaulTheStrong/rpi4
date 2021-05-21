@@ -1,16 +1,18 @@
 @import "reset.css";
 
 body {
-    background-image: url('../resources/02.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
+    transition: background-image 1.5s ease-in-out;
+
 }
 
 * {
     font-family: 'Montserrat', sans-serif;
     color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
 }
 
 #content {
@@ -40,6 +42,12 @@ body {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     margin-right: 10px;
+    transition: 1s;
+}
+
+#refresh:hover {
+    background-color: rgb(172, 172, 172);
+    cursor: pointer;
 }
 
 #refresh-img {
@@ -213,7 +221,11 @@ body {
 #main-weather-image {
     width: 150px;
     height: 150px;
-    display: flex;
+}
+
+#main-weather-image img {
+    width: 100%;
+    height: 100%;
 }
 
 #today-temperature {
@@ -277,9 +289,7 @@ body {
 #map {
     width: 300px;
     height: 300px;
-    mask: url('../resources/mask.svg') top right;
-    mask-repeat: no-repeat;
-    mask-size: cover;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 100% 75%, 100% 100%, 84% 84%, 0 84%);
 }
 
 #coordinates {
