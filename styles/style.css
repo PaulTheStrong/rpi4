@@ -2,6 +2,10 @@
 
 body {
     background-image: url('../resources/02.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 * {
@@ -12,6 +16,8 @@ body {
 #content {
     display: flex;
     flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto
 }
 
 #top-bar {
@@ -20,17 +26,18 @@ body {
     margin: 40px auto 0;
     height: 44px;
     justify-content: space-between;
-
+    flex-wrap: wrap;
 }
 
 #settings {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #refresh {
     width: 44px;
     height: 44px;
-    background-color: rgba(107, 107, 107, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     margin-right: 10px;
 }
@@ -41,19 +48,50 @@ body {
 }
 
 #language-choice{
-    background-color: rgba(107, 107, 107, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    background-size: 35px 20px;
+    background-repeat: no-repeat;
+    background-position: 39px 13px;
+    background-image: url("../resources/arrow-down.png");
+    font-size: 25px;
+    padding-left: 5px;
+    line-height: 44px;
+    width: 71px;
+    height: 44px;
+    border-radius: 10px;
+    margin-right: 10px;
+    transition: 0.5s;
+
+}
+
+#language-choice:hover {
+    background-color: rgba(0, 0, 0, 1);
+    cursor: pointer;
+}
+
+.language-option {
+    display: none;
+    animation: 1s;
+    font-size: 25px;
+    padding-left: 5px;
+    line-height: 44px;
     width: 71px;
     height: 44px;
     border-radius: 10px;
     margin-right: 10px;
 }
 
+
 #temperature-choice {
-    background-color: rgba(107, 107, 107, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     width: 88px;
     height: 44px;
     border-radius: 10px;
     display: flex;
+    font-size: 30px;
+    text-align: center;
+    padding: 0;
+    position: relative;
 }
 
 #temperature-choice div {
@@ -62,19 +100,32 @@ body {
     border-radius: 10px;
 }
 
+#temperature-choice:hover {
+    cursor: pointer;
+}
+
+#temperature-choice-slider {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(170, 170, 170, 1);
+    z-index: -1;
+
+}
+
 .temperature-active {
-    background-color: rgba(107, 107, 107, 0.8);
+    
 }
 
 #search {
-    width: 375px;
+    width: 300px;
     height: 44px;
     display: flex;
     border-radius: 10px;
 }
 
 #search-bar {
-    width: 274px;
+    width: 230px;
     height: inherit;
     background-color: rgba(107, 107, 107, 0.5);
     border: 2px solid rgb(194, 194, 194);   
@@ -118,12 +169,19 @@ body {
     font-family: 'Montserrat', sans-serif;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    transition: 1s;
+}
+
+#search-button:hover {
+    background-color: rgba(174, 181, 185, 1);
+    cursor: pointer;
 }
 
 #main {
     width: 90%;
     margin: auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 57px;
 }
@@ -134,33 +192,42 @@ body {
 
 #today-weather-forecast {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #weather {
     color: white;
 }
 
+#weather * {
+    text-transform: uppercase;
+}
+
+#main-icon-and-weather-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+#main-weather-image {
+    width: 150px;
+    height: 150px;
+    display: flex;
+}
+
 #today-temperature {
     position: relative;
+    margin: 0 auto;
 }
 
 #today-temperature span:first-child{
-    font-size: 306px;
-    line-height: 373px;
-}
-
-#big-circle {
-    font-size: 100px;
-    line-height: 373px;
-    position:absolute;
-    top: -65px;
-    right: -40px;
+    font-size: 200px;
 }
 
 #weather-info {
     font-size: 20px;
-    padding-top: 200px;
-    margin-left: 50px;
+    margin: 0px auto;
 }
 
 .week-day {
@@ -169,14 +236,17 @@ body {
 
 #future-forecasts {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .small-forecast {
-    width: 160px;
+    width: 200px;
+    position: relative;
 }
 
-.small-forecast:not(:last-child) {
-    margin-right: 51px;
+.small-forecast {
+    margin:0 auto;
 }
 
 .future-temperature {
@@ -184,17 +254,32 @@ body {
     line-height: 1;
 }
 
+.small-weather-icon {
+    position:absolute;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    top: 10px;
+    right: 0px;
+}
+
+.small-weather-icon img {
+    width: 100px;
+    height: 100px;
+}
+
 #map-nav {
-    width: 375px;
-    height: 385px;
+    width: 300px;
+    height: 300px;
     padding-top: 100px;
 }
 
 #map {
-    width: 375px;
-    height: 375px;
+    width: 300px;
+    height: 300px;
     mask: url('../resources/mask.svg') top right;
     mask-repeat: no-repeat;
+    mask-size: cover;
 }
 
 #coordinates {

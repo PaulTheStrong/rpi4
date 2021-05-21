@@ -1,5 +1,21 @@
-//yandex map api key: 1e754afd-3073-488f-bc7c-0fdc6e1cf099
+import {appConfig} from './control.js';
+import {setByCoordinates} from "./weather.js";
 
+var myMap;
+export function updateMap(coords) {
+    setLongitudeAndLatitude(coords);
+    myMap.setCenter(coords, 7, {duration : 500}); 
+    let myGeoObject = new ymaps.GeoObject({
+        // Описание геометрии.
+        geometry: {
+            type: "Point",
+            coordinates: coords
+        }
+    });
+    myMap.geoObjects.removeAll();
+    myMap.geoObjects.add(myGeoObject);
+}
+//yandex map api key: 1e754afd-3073-488f-bc7c-0fdc6e1cf099
 ymaps.ready(init);
 function setLongitudeAndLatitude(coords) {
     let latitude = document.getElementById("latitude-value");
@@ -11,7 +27,6 @@ function setLongitudeAndLatitude(coords) {
 }
 
 function convertCoordinates(coord) {
-
     let sign = coord >= 0;
     coord = Math.abs(coord);
     let grads = Math.floor(coord);
@@ -29,7 +44,7 @@ function convertCoordinates(coord) {
 }
 
 function init() {
-    let myMap = new ymaps.Map("map", {
+    myMap = new ymaps.Map("map", {
         center: [53.893009,27.567444],
         zoom: 7
     });
@@ -43,7 +58,6 @@ function init() {
     myMap.controls.remove("routeButtonControl");
     myMap.controls.remove("routePanelControl");
 
-    console.log(myMap.copyrights);
     setLongitudeAndLatitude(myMap.getCenter());
 
     let mark = new ymaps.GeoObject({
@@ -58,17 +72,6 @@ function init() {
         // Получение координат щелчка
         let coords = e.get('coords');
         console.log(coords);
-        let myGeoObject = new ymaps.GeoObject({
-            // Описание геометрии.
-            geometry: {
-                type: "Point",
-                coordinates: coords
-            }
-        });
-        console.log(convertCoordinates(coords[1]));
-        myMap.geoObjects.removeAll();
-        myMap.geoObjects.add(myGeoObject);
-        setLongitudeAndLatitude(coords);
+        appConfig.coordinates = coords;
     });
-
 }
